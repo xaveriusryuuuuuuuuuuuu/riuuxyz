@@ -1,7 +1,7 @@
-﻿-- ==== Riuu branding & owner ====
+-- ==== Riuu branding & owner ====
 local RIUU_OWNER = "28cellotzy"
-local RIUU_DISCORD = "noncxvrs"
-local RIUU_SCRIPT_URL = "https://raw.githubusercontent.com/xaveriusryuuuuuuuuuuuu/riuuxyz/refs/heads/main/Riuu-Steal-An-Egg.lua" -- fill with the raw URL of this script to enable auto re-execute after teleport
+local RIUU_DISCORD = "Xaverius Putra N."
+local RIUU_SCRIPT_URL = "https://raw.githubusercontent.com/xaveriusryuuuuuuuuuuuu/riuucommunity/refs/heads/main/Riuu-Steal-An-Egg.lua" -- fill with the raw URL of this script to enable auto re-execute after teleport
 
 local function RiuuIsOwner()
 	local lp = game:GetService("Players").LocalPlayer
@@ -16,17 +16,17 @@ local function RiuuCreateUI()
 	local Players = game:GetService("Players")
 
 	local theme = {
-		windowBg   = Color3.fromRGB(13, 13, 17),
-		headerBg   = Color3.fromRGB(18, 18, 23),
-		panelBg    = Color3.fromRGB(23, 23, 29),
-		accent     = Color3.fromRGB(88, 101, 242),
-		accentDark = Color3.fromRGB(70, 80, 200),
-		text       = Color3.fromRGB(235, 235, 240),
-		subtext    = Color3.fromRGB(150, 155, 168),
-		stroke     = Color3.fromRGB(40, 40, 48),
-		success    = Color3.fromRGB(60, 200, 120),
-		danger     = Color3.fromRGB(220, 60, 60),
-		warn       = Color3.fromRGB(240, 180, 60),
+		windowBg   = Color3.fromRGB(0, 0, 0),
+		headerBg   = Color3.fromRGB(10, 10, 12),
+		panelBg    = Color3.fromRGB(8, 8, 10),
+		accent     = Color3.fromRGB(0, 120, 255),
+		accentDark = Color3.fromRGB(0, 70, 160),
+		text       = Color3.fromRGB(255, 255, 255),
+		subtext    = Color3.fromRGB(175, 180, 190),
+		stroke     = Color3.fromRGB(30, 33, 42),
+		success    = Color3.fromRGB(0, 120, 255),
+		danger     = Color3.fromRGB(0, 80, 200),
+		warn       = Color3.fromRGB(0, 100, 230),
 	}
 
 	local RIUU_DIR = "RiuuHub"
@@ -74,11 +74,6 @@ local function RiuuCreateUI()
 		return inst
 	end
 	local function round(inst, radius)
-		pcall(function()
-			local r = Instance.new("UICorner")
-			r.CornerRadius = UDim.new(0, radius or 8)
-			r.Parent = inst
-		end)
 	end
 	local function strk(inst, color, thickness)
 		pcall(function()
@@ -103,9 +98,9 @@ local function RiuuCreateUI()
 			if inst.BackgroundTransparency ~= 0 then return end
 			local orig = inst.BackgroundColor3
 			local hot = Color3.fromRGB(
-				math.clamp(math.floor(orig.R * 255 + 16), 0, 255),
-				math.clamp(math.floor(orig.G * 255 + 16), 0, 255),
-				math.clamp(math.floor(orig.B * 255 + 16), 0, 255))
+				math.clamp(math.floor(orig.R * 255 + 36), 0, 255),
+				math.clamp(math.floor(orig.G * 255 + 36), 0, 255),
+				math.clamp(math.floor(orig.B * 255 + 36), 0, 255))
 			inst.MouseEnter:Connect(function() inst.BackgroundColor3 = hot end)
 			inst.MouseLeave:Connect(function() inst.BackgroundColor3 = orig end)
 		end)
@@ -127,10 +122,11 @@ local function RiuuCreateUI()
 			ensureNotify()
 			notifySeq = notifySeq + 1
 			local dur = tonumber(cfg.Duration) or 3.5
-			local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.panelBg, BorderSizePixel=0, LayoutOrder=-notifySeq, Parent=notifyHolder})
-		round(card, 8); pad(card, 12, 10, 12, 10)
-		local title = mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=13, TextColor3=theme.accent, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Title or "Riuu"), Parent=card})
-		local body = mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Content or ""), Position=UDim2.new(0, 0, 0, 18), Parent=card})
+			local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.windowBg, BorderSizePixel=0, LayoutOrder=-notifySeq, Parent=notifyHolder})
+		round(card, 8)
+		mk("Frame", {Size=UDim2.new(0, 2, 1, 0), BackgroundColor3=theme.accent, BorderSizePixel=0, Parent=card})
+		local title = mk("TextLabel", {Position=UDim2.new(0, 12, 0, 9), Size=UDim2.new(1, -20, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=13, TextColor3=theme.accent, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Title or "Riuu"), Parent=card})
+		local body = mk("TextLabel", {Position=UDim2.new(0, 12, 0, 29), Size=UDim2.new(1, -20, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Content or ""), Parent=card})
 		task.delay(dur, function() pcall(function() card:Destroy() end) end)
     end)
 end
@@ -139,22 +135,22 @@ end
 		cfg = cfg or {}
 		local key = keyPrefix .. "/" .. tostring(cfg.Flag or cfg.Title or "toggle")
 		local value = cfg.Default == true
-		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.panelBg, BorderSizePixel=0, Parent=parent})
+		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, BorderSizePixel=0, Parent=parent})
 		round(card, 8); pad(card, 10, 9, 10, 9)
 		mk("UIListLayout", {Padding=UDim.new(0, 4), SortOrder=Enum.SortOrder.LayoutOrder, Parent=card})
 		local lbl = mk("TextLabel", {Size=UDim2.new(1, -50, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.GothamSemibold, TextSize=13, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Title or "Toggle"), Parent=card})
 		if cfg.Content then
 			mk("TextLabel", {Size=UDim2.new(1, -50, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Content), LayoutOrder=1, Parent=card})
 		end
-		local switch = mk("TextButton", {AnchorPoint=Vector2.new(1, 0), Position=UDim2.new(1, 0, 0, 7), Size=UDim2.new(0, 40, 0, 22), BackgroundColor3=value and theme.accent or Color3.fromRGB(45, 45, 55), BorderSizePixel=0, Text="", AutoButtonColor=false, ZIndex=2, Parent=card})
+		local switch = mk("TextButton", {AnchorPoint=Vector2.new(1, 0), Position=UDim2.new(1, 0, 0, 7), Size=UDim2.new(0, 36, 0, 18), BackgroundColor3=value and theme.accent or Color3.fromRGB(26, 29, 36), BorderSizePixel=0, Text="", AutoButtonColor=false, ZIndex=2, Parent=card})
 		round(switch, 11)
-		local knob = mk("Frame", {AnchorPoint=Vector2.new(0, 0.5), Position=UDim2.new(0, value and 21 or 3, 0.5, 0), Size=UDim2.new(0, 16, 0, 16), BackgroundColor3=theme.text, BorderSizePixel=0, ZIndex=3, Parent=switch})
+		local knob = mk("Frame", {AnchorPoint=Vector2.new(0, 0.5), Position=UDim2.new(0, value and 19 or 2, 0.5, 0), Size=UDim2.new(0, 14, 0, 14), BackgroundColor3=theme.text, BorderSizePixel=0, ZIndex=3, Parent=switch})
 		round(knob, 8)
 		local ctrl = {Value=value, Default=cfg.Default == true}
 		function ctrl:SetValue(v, fire)
 			value = v == true; ctrl.Value = value
-			switch.BackgroundColor3 = value and theme.accent or Color3.fromRGB(45, 45, 55)
-			knob.Position = UDim2.new(0, value and 21 or 3, 0.5, 0)
+			switch.BackgroundColor3 = value and theme.accent or Color3.fromRGB(26, 29, 36)
+			knob.Position = UDim2.new(0, value and 19 or 2, 0.5, 0)
 			if fire and type(cfg.Callback) == "function" then cfg.Callback(value) end
 		end
 		ctrl.Frame = card
@@ -169,14 +165,14 @@ end
 		local minv = tonumber(cfg.Min) or 0
 		local maxv = tonumber(cfg.Max) or 100
 		local value = math.clamp(default, minv, maxv)
-		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.panelBg, BorderSizePixel=0, Parent=parent})
+		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, BorderSizePixel=0, Parent=parent})
 		round(card, 8); pad(card, 10, 9, 10, 9)
 		mk("UIListLayout", {Padding=UDim.new(0, 4), SortOrder=Enum.SortOrder.LayoutOrder, Parent=card})
 		mk("TextLabel", {Size=UDim2.new(1, -40, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.GothamSemibold, TextSize=13, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Title or "Slider"), Parent=card})
 		if cfg.Content then
 			mk("TextLabel", {Size=UDim2.new(1, -40, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Content), LayoutOrder=1, Parent=card})
 		end
-		local bar = mk("Frame", {Size=UDim2.new(1, -10, 0, 8), Position=UDim2.new(0, 5, 0, 24), BackgroundColor3=Color3.fromRGB(45, 45, 55), BorderSizePixel=0, Parent=card})
+		local bar = mk("Frame", {Size=UDim2.new(1, -10, 0, 6), Position=UDim2.new(0, 5, 0, 26), BackgroundColor3=Color3.fromRGB(26, 29, 36), BorderSizePixel=0, Parent=card})
 		round(bar, 4)
 		local fill = mk("Frame", {Size=UDim2.new((value - minv) / math.max(maxv - minv, 1), 0, 1, 0), BackgroundColor3=theme.accent, BorderSizePixel=0, Parent=bar})
 		round(fill, 4)
@@ -212,14 +208,14 @@ end
 		cfg = cfg or {}
 		local key = keyPrefix .. "/" .. tostring(cfg.Flag or cfg.Title or "input")
 		local value = tostring(cfg.Default or "")
-		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.panelBg, BorderSizePixel=0, Parent=parent})
+		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, BorderSizePixel=0, Parent=parent})
 		round(card, 8); pad(card, 10, 9, 10, 9)
 		mk("UIListLayout", {Padding=UDim.new(0, 4), SortOrder=Enum.SortOrder.LayoutOrder, Parent=card})
 		mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.GothamSemibold, TextSize=13, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Title or "Input"), Parent=card})
 		if cfg.Content then
 			mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Content), LayoutOrder=1, Parent=card})
 		end
-		local box = mk("TextBox", {Size=UDim2.new(1, -10, 0, 26), Position=UDim2.new(0, 5, 0, 22), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, Text=value, PlaceholderText=tostring(cfg.Placeholder or ""), ClearTextOnFocus=false, Parent=card})
+		local box = mk("TextBox", {Size=UDim2.new(1, -10, 0, 26), Position=UDim2.new(0, 5, 0, 22), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, Text=value, PlaceholderText=tostring(cfg.Placeholder or ""), ClearTextOnFocus=false, Parent=card})
 		round(box, 6)
 		box.FocusLost:Connect(function()
 			value = box.Text
@@ -236,7 +232,7 @@ end
 
 	local function makeButton(parent, cfg)
 		cfg = cfg or {}
-		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.panelBg, BorderSizePixel=0, Parent=parent})
+		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, BorderSizePixel=0, Parent=parent})
 		round(card, 8); pad(card, 10, 9, 10, 9)
 		mk("UIListLayout", {Padding=UDim.new(0, 4), SortOrder=Enum.SortOrder.LayoutOrder, Parent=card})
 		local btn = mk("TextButton", {Size=UDim2.new(1, 0, 0, 32), BackgroundColor3=theme.accent, BorderSizePixel=0, Font=Enum.Font.GothamBold, TextSize=13, TextColor3=theme.text, Text=tostring(cfg.Title or "Button"), AutoButtonColor=false, Parent=card})
@@ -252,10 +248,10 @@ end
 		cfg = cfg or {}
 		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Parent=parent})
 		mk("UIListLayout", {Padding=UDim.new(0, 4), SortOrder=Enum.SortOrder.LayoutOrder, Parent=card})
-		local titleLbl = mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.GothamSemibold, TextSize=12, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Title or cfg.Text or ""), Parent=card})
+		local titleLbl = mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=12, TextColor3=theme.accent, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Title or cfg.Text or ""), Parent=card})
 		local bodyLbl
 		if cfg.Content then
-			bodyLbl = mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Content), LayoutOrder=1, Parent=card})
+			bodyLbl = mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Content), LayoutOrder=1, Parent=card})
 		end
 		local handle = {Frame = card}
 		function handle:SetTitle(text)
@@ -295,16 +291,16 @@ end
 		else
 			value = type(cfg.Default) == "string" and cfg.Default or ""
 		end
-		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.panelBg, BorderSizePixel=0, Parent=parent})
+		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, BorderSizePixel=0, Parent=parent})
 		round(card, 8); pad(card, 10, 9, 10, 9)
 		mk("UIListLayout", {Padding=UDim.new(0, 4), SortOrder=Enum.SortOrder.LayoutOrder, Parent=card})
 		mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.GothamSemibold, TextSize=13, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Title or "Dropdown"), Parent=card})
 		if cfg.Content then
 			mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Content), LayoutOrder=1, Parent=card})
 		end
-		local btn = mk("TextButton", {Size=UDim2.new(1, -10, 0, 26), Position=UDim2.new(0, 5, 0, 22), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, Text=multi and (table.concat(value, ", ") or "") or value, AutoButtonColor=false, TextTruncate=Enum.TextTruncate.AtEnd, Parent=card})
+		local btn = mk("TextButton", {Size=UDim2.new(1, -10, 0, 26), Position=UDim2.new(0, 5, 0, 22), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, Text=multi and (table.concat(value, ", ") or "") or value, AutoButtonColor=false, TextTruncate=Enum.TextTruncate.AtEnd, Parent=card})
 		round(btn, 6)
-		local listFrame = mk("Frame", {Size=UDim2.new(1, -10, 0, math.min(#options, maxVisible) * 24 + 6), Position=UDim2.new(0, 5, 0, 54), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, Visible=false, ClipsDescendants=true, Parent=card})
+		local listFrame = mk("Frame", {Size=UDim2.new(1, -10, 0, math.min(#options, maxVisible) * 24 + 6), Position=UDim2.new(0, 5, 0, 54), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, Visible=false, ClipsDescendants=true, Parent=card})
 		round(listFrame, 6); strk(listFrame, theme.stroke, 0.5)
 		local scroll = mk("ScrollingFrame", {Size=UDim2.new(1, -6, 1, -6), Position=UDim2.new(0, 3, 0, 3), BackgroundTransparency=1, BorderSizePixel=0, ScrollBarThickness=3, ScrollBarImageColor3=theme.accent, CanvasSize=UDim2.new(0, 0, 0, 0), AutomaticCanvasSize=Enum.AutomaticSize.Y, Parent=listFrame})
 		mk("UIListLayout", {Padding=UDim.new(0, 2), SortOrder=Enum.SortOrder.LayoutOrder, Parent=scroll})
@@ -356,14 +352,14 @@ end
 	end
 	local function makeActionList(parent, cfg)
 		cfg = cfg or {}
-		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.panelBg, BorderSizePixel=0, Parent=parent})
+		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, BorderSizePixel=0, Parent=parent})
 		round(card, 8); pad(card, 10, 9, 10, 9)
 		mk("UIListLayout", {Padding=UDim.new(0, 6), SortOrder=Enum.SortOrder.LayoutOrder, Parent=card})
 		mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=14, TextColor3=theme.accent, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, Text=tostring(cfg.Title or "Action List"), Parent=card})
 		local rowsContainer = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, LayoutOrder=1, Parent=card})
 		mk("UIListLayout", {Padding=UDim.new(0, 4), SortOrder=Enum.SortOrder.LayoutOrder, Parent=rowsContainer})
 		local emptyLbl = mk("TextLabel", {Size=UDim2.new(1, 0, 0, 18), BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, Text="(no entries)", Visible=false, Parent=rowsContainer})
-		local buttonColors = {accent=theme.accent, success=Color3.fromRGB(60, 200, 120), danger=theme.danger, warn=Color3.fromRGB(240, 180, 60)}
+		local buttonColors = {accent=theme.accent, success=theme.success, danger=theme.danger, warn=theme.warn}
 		local handle = {Frame = card}
 		function handle:Alive()
 			local ok, result = pcall(function()
@@ -564,7 +560,7 @@ end
 		local height = math.clamp(tonumber(cfg.Height) or 330, 240, 560)
 		local myName = (Players.LocalPlayer and Players.LocalPlayer.Name) or "You"
 
-		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, height), BackgroundColor3=theme.panelBg, BorderSizePixel=0, Parent=parent})
+		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, height), BackgroundTransparency=1, BorderSizePixel=0, Parent=parent})
 		round(card, 8); pad(card, 8, 8, 8, 8)
 
 		local state = { room = "General", on = true, hidden = false }
@@ -621,7 +617,7 @@ end
 			end)
 		end
 
-		local list = mk("ScrollingFrame", {Position=UDim2.new(0, 0, 0, 58), Size=UDim2.new(1, 0, 1, -96), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, ScrollBarThickness=3, ScrollBarImageColor3=theme.accent, CanvasSize=UDim2.new(0, 0, 0, 0), AutomaticCanvasSize=Enum.AutomaticSize.Y, ScrollingDirection=Enum.ScrollingDirection.Y, Parent=card})
+		local list = mk("ScrollingFrame", {Position=UDim2.new(0, 0, 0, 58), Size=UDim2.new(1, 0, 1, -96), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, ScrollBarThickness=3, ScrollBarImageColor3=theme.accent, CanvasSize=UDim2.new(0, 0, 0, 0), AutomaticCanvasSize=Enum.AutomaticSize.Y, ScrollingDirection=Enum.ScrollingDirection.Y, Parent=card})
 		round(list, 6); pad(list, 6, 6, 6, 6)
 		mk("UIListLayout", {Padding=UDim.new(0, 4), SortOrder=Enum.SortOrder.LayoutOrder, Parent=list})
 		local noteLbl = mk("TextLabel", {Position=UDim2.new(0, 0, 0, 58), Size=UDim2.new(1, 0, 1, -96), BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.subtext, TextWrapped=true, Text="", Visible=false, Parent=card})
@@ -635,7 +631,7 @@ end
 		end
 
 		local function makeRow(m, order)
-			return mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, RichText=true, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, LayoutOrder=order, Text=string.format('<font color="%s"><b>%s:</b></font> %s', m.author == myName and "#5865f2" or "#a0a5af", escapeRich(m.author), escapeRich(m.text)), Parent=list})
+			return mk("TextLabel", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, RichText=true, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextWrapped=true, LayoutOrder=order, Text=string.format('<font color="%s"><b>%s:</b></font> %s', m.author == myName and "#4da3ff" or "#9aa1ad", escapeRich(m.author), escapeRich(m.text)), Parent=list})
 		end
 
 		function renderRoom()
@@ -753,7 +749,7 @@ end
 			end)
 		end
 
-		box = mk("TextBox", {Position=UDim2.new(0, 0, 1, -30), Size=UDim2.new(1, -74, 0, 28), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Message in #general...", ClearTextOnFocus=false, Text="", Parent=card})
+		box = mk("TextBox", {Position=UDim2.new(0, 0, 1, -30), Size=UDim2.new(1, -74, 0, 28), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Message in #general...", ClearTextOnFocus=false, Text="", Parent=card})
 		round(box, 6)
 		local sendBtn = mk("TextButton", {AnchorPoint=Vector2.new(1, 1), Position=UDim2.new(1, 0, 1, -30), Size=UDim2.new(0, 66, 0, 28), BackgroundColor3=theme.accent, BorderSizePixel=0, Font=Enum.Font.GothamBold, TextSize=12, TextColor3=theme.text, Text="Send", AutoButtonColor=false, Parent=card})
 		round(sendBtn, 6); hoverTween(sendBtn)
@@ -802,7 +798,7 @@ end
 		cfg = cfg or {}
 		local myName = (Players.LocalPlayer and Players.LocalPlayer.Name) or "Player"
 
-		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 400), BackgroundColor3=theme.panelBg, BorderSizePixel=0, Parent=parent})
+		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 400), BackgroundTransparency=1, BorderSizePixel=0, Parent=parent})
 		round(card, 8); pad(card, 8, 8, 8, 8)
 
 		local state = { view = "list", threadId = nil }
@@ -902,11 +898,11 @@ end
 				mk("TextLabel", {Position=UDim2.new(0, 84, 0, 4), Size=UDim2.new(1, -84, 0, 20), BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=13, TextColor3=theme.accent, TextXAlignment=Enum.TextXAlignment.Left, Text="New Thread", Parent=body})
 
 				mk("TextLabel", {Position=UDim2.new(0, 0, 0, 32), Size=UDim2.new(1, 0, 0, 14), BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, Text="Title", Parent=body})
-				local titleBox = mk("TextBox", {Position=UDim2.new(0, 0, 0, 48), Size=UDim2.new(1, 0, 0, 28), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Thread title", ClearTextOnFocus=false, Text="", Parent=body})
+				local titleBox = mk("TextBox", {Position=UDim2.new(0, 0, 0, 48), Size=UDim2.new(1, 0, 0, 28), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Thread title", ClearTextOnFocus=false, Text="", Parent=body})
 				round(titleBox, 6)
 
 				mk("TextLabel", {Position=UDim2.new(0, 0, 0, 84), Size=UDim2.new(1, 0, 0, 14), BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, Text="Message", Parent=body})
-				local msgBox = mk("TextBox", {Position=UDim2.new(0, 0, 0, 100), Size=UDim2.new(1, 0, 0, 140), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Write your message...", ClearTextOnFocus=false, Text="", TextWrapped=true, TextXAlignment=Enum.TextXAlignment.Left, TextYAlignment=Enum.TextYAlignment.Top, MultiLine=true, Parent=body})
+				local msgBox = mk("TextBox", {Position=UDim2.new(0, 0, 0, 100), Size=UDim2.new(1, 0, 0, 140), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Write your message...", ClearTextOnFocus=false, Text="", TextWrapped=true, TextXAlignment=Enum.TextXAlignment.Left, TextYAlignment=Enum.TextYAlignment.Top, MultiLine=true, Parent=body})
 				round(msgBox, 6)
 
 				local postBtn = mk("TextButton", {AnchorPoint=Vector2.new(0, 1), Position=UDim2.new(0, 0, 1, 0), Size=UDim2.new(0, 110, 0, 28), BackgroundColor3=theme.accent, BorderSizePixel=0, Font=Enum.Font.GothamBold, TextSize=12, TextColor3=theme.text, Text="Post Thread", AutoButtonColor=false, Parent=body})
@@ -975,7 +971,7 @@ end
 					end
 				end
 
-				local replyBox = mk("TextBox", {AnchorPoint=Vector2.new(0, 1), Position=UDim2.new(0, 0, 1, 0), Size=UDim2.new(1, -116, 0, 28), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Write a reply...", ClearTextOnFocus=false, Text="", Parent=body})
+				local replyBox = mk("TextBox", {AnchorPoint=Vector2.new(0, 1), Position=UDim2.new(0, 0, 1, 0), Size=UDim2.new(1, -116, 0, 28), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Write a reply...", ClearTextOnFocus=false, Text="", Parent=body})
 				round(replyBox, 6)
 				local replyBtn = mk("TextButton", {AnchorPoint=Vector2.new(1, 1), Position=UDim2.new(1, 0, 1, 0), Size=UDim2.new(0, 110, 0, 28), BackgroundColor3=theme.accent, BorderSizePixel=0, Font=Enum.Font.GothamBold, TextSize=12, TextColor3=theme.text, Text="Reply", AutoButtonColor=false, Parent=body})
 				round(replyBtn, 6); hoverTween(replyBtn)
@@ -1133,7 +1129,7 @@ end
 		end)
 
 		label("Auto-Load Configuration", 8)
-		local setBtn, clearBtn = buttonRow(9, "Set Auto Load", theme.success, "Clear Auto Load", Color3.fromRGB(45, 45, 55))
+		local setBtn, clearBtn = buttonRow(9, "Set Auto Load", theme.success, "Clear Auto Load", Color3.fromRGB(26, 29, 36))
 		setBtn.MouseButton1Click:Connect(function()
 			local name = selectedProfile()
 			if name == "" then
@@ -1173,7 +1169,7 @@ end
 		end)
 
 		label("External Config", 12)
-		local importBox = mk("TextBox", {Size=UDim2.new(1, 0, 0, 64), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Paste raw JSON config here", ClearTextOnFocus=false, Text="", TextWrapped=true, TextXAlignment=Enum.TextXAlignment.Left, TextYAlignment=Enum.TextYAlignment.Top, MultiLine=true, LayoutOrder=13, Parent=card})
+		local importBox = mk("TextBox", {Size=UDim2.new(1, 0, 0, 64), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderText="Paste raw JSON config here", ClearTextOnFocus=false, Text="", TextWrapped=true, TextXAlignment=Enum.TextXAlignment.Left, TextYAlignment=Enum.TextYAlignment.Top, MultiLine=true, LayoutOrder=13, Parent=card})
 		round(importBox, 6)
 		local importBtn = wideButton(14, "Import Config", theme.accent)
 		importBtn.MouseButton1Click:Connect(function()
@@ -1306,7 +1302,7 @@ end
 		end
 
 		local function category(title, order)
-			local row = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.headerBg, BorderSizePixel=0, LayoutOrder=order or 0, Parent=card})
+			local row = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.windowBg, BorderSizePixel=0, LayoutOrder=order or 0, Parent=card})
 			round(row, 6)
 			mk("UIListLayout", {Padding=UDim.new(0, 6), SortOrder=Enum.SortOrder.LayoutOrder, Parent=row})
 			local head = mk("TextButton", {Size=UDim2.new(1, 0, 0, 26), BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=12, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, Text=tostring(title or ""), AutoButtonColor=false, Parent=row})
@@ -1329,7 +1325,7 @@ end
 		end
 
 		local function catInput(parent, placeholder, order)
-			local f = mk("Frame", {Size=UDim2.new(1, 0, 0, 28), BackgroundColor3=Color3.fromRGB(15, 15, 20), BorderSizePixel=0, LayoutOrder=order or 1, Parent=parent})
+			local f = mk("Frame", {Size=UDim2.new(1, 0, 0, 28), BackgroundColor3=Color3.fromRGB(9, 10, 14), BorderSizePixel=0, LayoutOrder=order or 1, Parent=parent})
 			round(f, 6); pad(f, 8, 2, 8, 2)
 			return mk("TextBox", {Size=UDim2.new(1, 0, 1, 0), BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=12, TextColor3=theme.text, PlaceholderColor3=theme.subtext, PlaceholderText=tostring(placeholder or ""), Text="", ClearTextOnFocus=false, TextXAlignment=Enum.TextXAlignment.Left, ClipsDescendants=true, Parent=f})
 		end
@@ -1366,7 +1362,7 @@ end
 				showBanner(text)
 				annBox.Text = ""
 			end)
-			catButton(body, "Show Banner Only", Color3.fromRGB(45, 45, 55), 4, function()
+			catButton(body, "Show Banner Only", Color3.fromRGB(26, 29, 36), 4, function()
 				local text = tostring(annBox.Text or "")
 				if text:gsub("%s+", "") == "" then
 					notify("Type a message first.")
@@ -1402,7 +1398,7 @@ end
 					end
 					applyCap(n)
 				end,
-				"Reset Cap (60)", Color3.fromRGB(45, 45, 55), function()
+				"Reset Cap (60)", Color3.fromRGB(26, 29, 36), function()
 					applyCap(60)
 				end)
 		end
@@ -1414,7 +1410,7 @@ end
 					notify("Rejoining...")
 					game:GetService("TeleportService"):TeleportAsync(game.PlaceId, player)
 				end,
-				"Copy Job ID", Color3.fromRGB(45, 45, 55), function()
+				"Copy Job ID", Color3.fromRGB(26, 29, 36), function()
 					local jobId = tostring(game.JobId)
 					if jobId == "" then
 						notify("No Job ID (not in a real server).")
@@ -1428,7 +1424,7 @@ end
 					end
 				end)
 			catButtonRow(body, 2,
-				"Copy Place ID", Color3.fromRGB(45, 45, 55), function()
+				"Copy Place ID", Color3.fromRGB(26, 29, 36), function()
 					local id = tostring(game.PlaceId)
 					if typeof(setclipboard) == "function" then
 						setclipboard(id)
@@ -1437,7 +1433,7 @@ end
 						notify("Place ID: " .. id)
 					end
 				end,
-				"Copy User ID", Color3.fromRGB(45, 45, 55), function()
+				"Copy User ID", Color3.fromRGB(26, 29, 36), function()
 					local id = tostring(player.UserId)
 					if typeof(setclipboard) == "function" then
 						setclipboard(id)
@@ -1511,13 +1507,14 @@ end
 	end
 	-- ==== Section ====
 	local function makeSection(page, name, keyPrefix, startCollapsed)
-		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundColor3=theme.headerBg, BorderSizePixel=0, Parent=page})
-		round(card, 8); pad(card, 10, 9, 10, 9)
-		mk("UIListLayout", {Padding=UDim.new(0, 6), SortOrder=Enum.SortOrder.LayoutOrder, Parent=card})
-		local headerBtn = mk("TextButton", {Size=UDim2.new(1, 0, 0, 20), BackgroundTransparency=1, BorderSizePixel=0, Text="", AutoButtonColor=false, Parent=card})
-		mk("TextLabel", {Size=UDim2.new(1, -24, 1, 0), BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=14, TextColor3=theme.accent, TextXAlignment=Enum.TextXAlignment.Left, TextTruncate=Enum.TextTruncate.AtEnd, Text=tostring(name or "Section"), Parent=headerBtn})
+		local card = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, Parent=page})
+		pad(card, 0, 2, 0, 2)
+		mk("UIListLayout", {Padding=UDim.new(0, 8), SortOrder=Enum.SortOrder.LayoutOrder, Parent=card})
+		local headerBtn = mk("TextButton", {Size=UDim2.new(1, 0, 0, 22), BackgroundTransparency=1, BorderSizePixel=0, Text="", AutoButtonColor=false, LayoutOrder=0, Parent=card})
+		mk("TextLabel", {Size=UDim2.new(1, -24, 1, 0), BackgroundTransparency=1, Font=Enum.Font.GothamBlack, TextSize=13, TextColor3=theme.accent, TextXAlignment=Enum.TextXAlignment.Left, TextTruncate=Enum.TextTruncate.AtEnd, Text=tostring(name or "Section"), Parent=headerBtn})
 		local chevron = mk("TextLabel", {AnchorPoint=Vector2.new(1, 0.5), Position=UDim2.new(1, 0, 0.5, 0), Size=UDim2.new(0, 18, 0, 18), BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=16, TextColor3=theme.accent, TextXAlignment=Enum.TextXAlignment.Center, Text="›", Parent=headerBtn})
-		local content = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, LayoutOrder=1, Parent=card})
+		mk("Frame", {Size=UDim2.new(1, 0, 0, 1), BackgroundColor3=theme.stroke, BorderSizePixel=0, LayoutOrder=1, Parent=card})
+		local content = mk("Frame", {Size=UDim2.new(1, 0, 0, 0), AutomaticSize=Enum.AutomaticSize.Y, BackgroundTransparency=1, LayoutOrder=2, Parent=card})
 		mk("UIListLayout", {Padding=UDim.new(0, 6), SortOrder=Enum.SortOrder.LayoutOrder, Parent=content})
 		local expanded = not startCollapsed
 		local function applySectionState()
@@ -1562,35 +1559,33 @@ end
 		cfgLoad()
 		local gui = mk("ScreenGui", {Name="RiuuHubGui", ResetOnSpawn=false, DisplayOrder=500, IgnoreGuiInset=false, ZIndexBehavior=Enum.ZIndexBehavior.Sibling}, (gethui and gethui()) or Players.LocalPlayer:FindFirstChildOfClass("PlayerGui"))
 		local main = mk("Frame", {AnchorPoint=Vector2.new(0.5, 0.5), Position=UDim2.new(0.5, 0, 0.5, 0), Size=UDim2.new(0, 860, 0, 540), BackgroundColor3=theme.windowBg, BorderSizePixel=0, Active=true, Parent=gui})
-		round(main, 14); strk(main, theme.stroke, 0.5)
-		local header = mk("Frame", {Size=UDim2.new(1, 0, 0, 44), BackgroundColor3=theme.headerBg, BorderSizePixel=0, Parent=main})
-		round(header, 14)
-		mk("Frame", {Size=UDim2.new(1, 0, 0, 14), Position=UDim2.new(0, 0, 1, -14), BackgroundColor3=theme.headerBg, BorderSizePixel=0, Parent=header})
-		local titleLbl = mk("TextLabel", {Position=UDim2.new(0, 14, 0, 0), Size=UDim2.new(1, -220, 1, 0), BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=15, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextTruncate=Enum.TextTruncate.AtEnd, Text=tostring(cfg.Title or "Riuu Hub"), Parent=header})
+		round(main, 14)
+		local header = mk("Frame", {Size=UDim2.new(1, 0, 0, 40), BackgroundColor3=theme.windowBg, BorderSizePixel=0, Parent=main})
+		mk("Frame", {Size=UDim2.new(1, 0, 0, 1), Position=UDim2.new(0, 0, 1, -1), BackgroundColor3=theme.stroke, BorderSizePixel=0, Parent=header})
+		local titleLbl = mk("TextLabel", {Position=UDim2.new(0, 14, 0, 0), Size=UDim2.new(1, -220, 1, 0), BackgroundTransparency=1, Font=Enum.Font.GothamBlack, TextSize=15, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextTruncate=Enum.TextTruncate.AtEnd, Text=tostring(cfg.Title or "Riuu Hub"), Parent=header})
 		if cfg.Footer then
 			mk("TextLabel", {AnchorPoint=Vector2.new(0, 0.5), Position=UDim2.new(0, 16 + titleLbl.TextBounds.X + 8, 0.5, 0), Size=UDim2.new(0, 200, 0, 16), BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, TextTruncate=Enum.TextTruncate.AtEnd, Text=tostring(cfg.Footer), Parent=header})
 		end
-		local ownerChip = mk("TextLabel", {AnchorPoint=Vector2.new(1, 0.5), Position=UDim2.new(1, -76, 0.5, 0), Size=UDim2.new(0, 132, 0, 22), BackgroundColor3=RiuuIsOwner() and theme.accent or theme.panelBg, BackgroundTransparency=RiuuIsOwner() and 0.2 or 0, BorderSizePixel=0, Font=Enum.Font.GothamBold, TextSize=10, TextColor3=RiuuIsOwner() and theme.text or theme.subtext, Text=(RiuuIsOwner() and "★ OWNER · " or "Owner · ") .. tostring(RIUU_OWNER), Parent=header})
-		round(ownerChip, 11)
-		local minBtn = mk("TextButton", {AnchorPoint=Vector2.new(1, 0.5), Position=UDim2.new(1, -44, 0.5, 0), Size=UDim2.new(0, 26, 0, 26), BackgroundColor3=theme.panelBg, BorderSizePixel=0, Font=Enum.Font.GothamBold, TextSize=14, TextColor3=theme.subtext, Text="–", AutoButtonColor=false, Parent=header})
-		round(minBtn, 13); hoverTween(minBtn)
-		local closeBtn = mk("TextButton", {AnchorPoint=Vector2.new(1, 0.5), Position=UDim2.new(1, -12, 0.5, 0), Size=UDim2.new(0, 26, 0, 26), BackgroundColor3=theme.danger, BackgroundTransparency=0.65, BorderSizePixel=0, Font=Enum.Font.GothamBold, TextSize=12, TextColor3=theme.text, Text="×", AutoButtonColor=false, Parent=header})
-		round(closeBtn, 13); hoverTween(closeBtn, 14)
-		local body = mk("Frame", {Position=UDim2.new(0, 0, 0, 44), Size=UDim2.new(1, 0, 1, -76), BackgroundTransparency=1, Parent=main})
-		local sidebar = mk("ScrollingFrame", {Size=UDim2.new(0, 170, 1, 0), BackgroundTransparency=1, BorderSizePixel=0, ScrollBarThickness=3, ScrollBarImageColor3=theme.accent, CanvasSize=UDim2.new(0, 0, 0, 0), AutomaticCanvasSize=Enum.AutomaticSize.Y, ScrollingDirection=Enum.ScrollingDirection.Y, Parent=body})
-		pad(sidebar, 10, 6, 10, 10)
-		mk("UIListLayout", {Padding=UDim.new(0, 6), SortOrder=Enum.SortOrder.LayoutOrder, Parent=sidebar})
-		local holder = mk("Frame", {Position=UDim2.new(0, 170, 0, 0), Size=UDim2.new(1, -170, 1, 0), BackgroundTransparency=1, Parent=body})
+		mk("TextLabel", {AnchorPoint=Vector2.new(1, 0.5), Position=UDim2.new(1, -78, 0.5, 0), Size=UDim2.new(0, 220, 0, 20), BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=10, TextColor3=RiuuIsOwner() and theme.accent or theme.subtext, TextXAlignment=Enum.TextXAlignment.Right, Text=(RiuuIsOwner() and "OWNER · " or "Owner · ") .. tostring(RIUU_OWNER), Parent=header})
+		local minBtn = mk("TextButton", {AnchorPoint=Vector2.new(1, 0.5), Position=UDim2.new(1, -44, 0.5, 0), Size=UDim2.new(0, 26, 0, 26), BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=16, TextColor3=theme.subtext, Text="–", AutoButtonColor=false, Parent=header})
+		local closeBtn = mk("TextButton", {AnchorPoint=Vector2.new(1, 0.5), Position=UDim2.new(1, -12, 0.5, 0), Size=UDim2.new(0, 26, 0, 26), BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=14, TextColor3=theme.text, Text="×", AutoButtonColor=false, Parent=header})
+		minBtn.MouseEnter:Connect(function() minBtn.TextColor3 = theme.text end)
+		minBtn.MouseLeave:Connect(function() minBtn.TextColor3 = theme.subtext end)
+		closeBtn.MouseEnter:Connect(function() closeBtn.TextColor3 = theme.accent end)
+		closeBtn.MouseLeave:Connect(function() closeBtn.TextColor3 = theme.text end)
+		local tabBar = mk("ScrollingFrame", {Position=UDim2.new(0, 0, 0, 41), Size=UDim2.new(1, 0, 0, 25), BackgroundTransparency=1, BorderSizePixel=0, ScrollBarThickness=0, ScrollBarImageTransparency=1, CanvasSize=UDim2.new(0, 0, 0, 0), ScrollingDirection=Enum.ScrollingDirection.X, Parent=main})
+		mk("UIListLayout", {FillDirection=Enum.FillDirection.Horizontal, Padding=UDim.new(0, 2), SortOrder=Enum.SortOrder.LayoutOrder, Parent=tabBar})
+		mk("Frame", {Position=UDim2.new(0, 0, 0, 65), Size=UDim2.new(1, 0, 0, 1), BackgroundColor3=theme.stroke, BorderSizePixel=0, Parent=main})
+		local body = mk("Frame", {Position=UDim2.new(0, 0, 0, 66), Size=UDim2.new(1, 0, 1, -98), BackgroundTransparency=1, Parent=main})
+		local holder = mk("Frame", {Size=UDim2.new(1, 0, 1, 0), BackgroundTransparency=1, Parent=body})
 		do
 			local footer = mk("Frame", {AnchorPoint=Vector2.new(0, 1), Position=UDim2.new(0, 0, 1, 0), Size=UDim2.new(1, 0, 0, 32), BackgroundColor3=theme.headerBg, BorderSizePixel=0, Parent=main})
 			mk("Frame", {Size=UDim2.new(1, 0, 0, 1), BackgroundColor3=theme.stroke, BackgroundTransparency=0.4, BorderSizePixel=0, Parent=footer})
-			mk("TextLabel", {Position=UDim2.new(0, 12, 0, 0), Size=UDim2.new(0, 240, 1, 0), BackgroundTransparency=1, Font=Enum.Font.Gotham, TextSize=11, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, TextTruncate=Enum.TextTruncate.AtEnd, Text="Welcome, " .. tostring(Players.LocalPlayer and Players.LocalPlayer.Name or "Player"), Parent=footer})
+			mk("TextLabel", {Position=UDim2.new(0, 12, 0, 0), Size=UDim2.new(0, 320, 1, 0), BackgroundTransparency=1, Font=Enum.Font.GothamBold, TextSize=11, TextColor3=theme.text, TextXAlignment=Enum.TextXAlignment.Left, TextTruncate=Enum.TextTruncate.AtEnd, Text="RIUU HUB  ·  Welcome, " .. tostring(Players.LocalPlayer and Players.LocalPlayer.Name or "Player"), Parent=footer})
 			local chipHolder = mk("Frame", {AnchorPoint=Vector2.new(1, 0.5), Position=UDim2.new(1, -10, 0.5, 0), Size=UDim2.new(0, 430, 1, 0), BackgroundTransparency=1, Parent=footer})
 			mk("UIListLayout", {FillDirection=Enum.FillDirection.Horizontal, HorizontalAlignment=Enum.HorizontalAlignment.Right, VerticalAlignment=Enum.VerticalAlignment.Center, Padding=UDim.new(0, 6), Parent=chipHolder})
 			local function footerChip(text)
-				local c = mk("TextLabel", {AutomaticSize=Enum.AutomaticSize.X, Size=UDim2.new(0, 0, 0, 22), BackgroundColor3=theme.windowBg, BorderSizePixel=0, Font=Enum.Font.GothamSemibold, TextSize=10, TextColor3=theme.subtext, Text=text, Parent=chipHolder})
-				round(c, 11); pad(c, 9, 0, 9, 0)
-				return c
+				return mk("TextLabel", {AutomaticSize=Enum.AutomaticSize.X, Size=UDim2.new(0, 0, 0, 22), BackgroundTransparency=1, Font=Enum.Font.GothamSemibold, TextSize=10, TextColor3=theme.subtext, Text=text, Parent=chipHolder})
 			end
 			local execName = "Unknown"
 			pcall(function()
@@ -1622,12 +1617,9 @@ end
 			local page = mk("ScrollingFrame", {Size=UDim2.new(1, 0, 1, 0), BackgroundTransparency=1, BorderSizePixel=0, ScrollBarThickness=3, ScrollBarImageColor3=theme.accent, CanvasSize=UDim2.new(0, 0, 0, 0), AutomaticCanvasSize=Enum.AutomaticSize.Y, ScrollingDirection=Enum.ScrollingDirection.Y, Visible=false, Parent=holder})
 			pad(page, 12, 12, 12, 6)
 			mk("UIListLayout", {Padding=UDim.new(0, 10), SortOrder=Enum.SortOrder.LayoutOrder, Parent=page})
-			local tabBtn = mk("TextButton", {Size=UDim2.new(1, -6, 0, 32), BackgroundColor3=theme.panelBg, BackgroundTransparency=1, BorderSizePixel=0, Font=Enum.Font.GothamSemibold, TextSize=12, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, AutoButtonColor=false, Text="", LayoutOrder=tabCount, Parent=sidebar})
-			round(tabBtn, 8); pad(tabBtn, 0, 8, 0, 10)
-			local dot = mk("Frame", {AnchorPoint=Vector2.new(0, 0.5), Position=UDim2.new(0, 2, 0.5, 0), Size=UDim2.new(0, 6, 0, 6), BackgroundColor3=theme.accent, BackgroundTransparency=1, BorderSizePixel=0, Parent=tabBtn})
-			round(dot, 3)
-			local tLbl = mk("TextLabel", {Size=UDim2.new(1, -14, 1, 0), Position=UDim2.new(0, 14, 0, 0), BackgroundTransparency=1, Font=Enum.Font.GothamSemibold, TextSize=12, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Left, TextTruncate=Enum.TextTruncate.AtEnd, Text=name, Parent=tabBtn})
-			hoverTween(tabBtn)
+			local tabBtn = mk("TextButton", {AutomaticSize=Enum.AutomaticSize.X, Size=UDim2.new(0, 0, 1, 0), BackgroundTransparency=1, BorderSizePixel=0, Font=Enum.Font.GothamSemibold, TextSize=12, TextColor3=theme.subtext, TextXAlignment=Enum.TextXAlignment.Center, AutoButtonColor=false, Text=name, LayoutOrder=tabCount, Parent=tabBar})
+			pad(tabBtn, 12, 0, 12, 0)
+			local underline = mk("Frame", {AnchorPoint=Vector2.new(0.5, 1), Position=UDim2.new(0.5, 0, 1, 0), Size=UDim2.new(1, -20, 0, 2), BackgroundColor3=theme.accent, BackgroundTransparency=1, BorderSizePixel=0, Parent=tabBtn})
 			local tab = {Name=name, Page=page}
 			local sectionCount = 0
 			function tab:AddSection(sname)
@@ -1641,9 +1633,9 @@ end
 				return tab
 			end
 			function tab:UpdateTitle(newName)
-				tLbl.Text = tostring(newName); name = tostring(newName)
+				tabBtn.Text = tostring(newName); name = tostring(newName)
 			end
-			tab.Button = tabBtn; tab.Label = tLbl; tab.Dot = dot
+			tab.Button = tabBtn; tab.Label = tabBtn; tab.Underline = underline
 			win.Tabs[#win.Tabs + 1] = tab
 			tabBtn.MouseButton1Click:Connect(function() win:SelectTab(tab) end)
 			if #win.Tabs == 1 then win:SelectTab(tab) end
@@ -1653,12 +1645,10 @@ end
 			for _, other in ipairs(win.Tabs) do
 				local on = (other == t)
 				other.Page.Visible = on
-				other.Button.BackgroundColor3 = theme.accent
-				other.Button.BackgroundTransparency = on and 0.84 or 1
 				other.Button.TextColor3 = on and theme.text or theme.subtext
 				other.Label.TextColor3 = on and theme.text or theme.subtext
-				other.Dot.BackgroundTransparency = on and 0 or 1
 				other.Label.Font = on and Enum.Font.GothamBold or Enum.Font.GothamSemibold
+				other.Underline.BackgroundTransparency = on and 0 or 1
 			end
 		end
 		function win:BindConfigTable(t)
@@ -25155,24 +25145,24 @@ do
 		local EggState2 = require(ReplicatedStorage.Client.EggState)
 		local Save = require(ReplicatedStorage.Shared.Save)
 		local t166 = {
-			strokeCol = Color3.fromRGB(36, 36, 42),
-			accent = Color3.fromRGB(26, 147, 250),
-			accentA = Color3.fromRGB(19, 96, 250),
-			accentB = Color3.fromRGB(33, 198, 250),
-			surface = Color3.fromRGB(22, 22, 27),
-			surfaceHi = Color3.fromRGB(28, 28, 34),
-			text = Color3.fromRGB(235, 236, 245),
-			btnText = Color3.fromRGB(186, 184, 198),
-			muted = Color3.fromRGB(156, 154, 170),
-			shadow = Color3.fromRGB(4, 4, 8),
-			obsTop = Color3.fromRGB(18, 18, 24),
-			obsMid = Color3.fromRGB(12, 12, 16),
-			obsLow = Color3.fromRGB(10, 14, 26),
-			btnBg = Color3.fromRGB(30, 30, 36),
-			btnHover = Color3.fromRGB(44, 44, 52),
-			inputBg = Color3.fromRGB(14, 14, 18),
-			switchOff = Color3.fromRGB(42, 42, 48),
-			good = Color3.fromRGB(163, 230, 53)
+			strokeCol = Color3.fromRGB(30, 33, 42),
+			accent = Color3.fromRGB(0, 120, 255),
+			accentA = Color3.fromRGB(0, 70, 160),
+			accentB = Color3.fromRGB(0, 100, 230),
+			surface = Color3.fromRGB(8, 8, 10),
+			surfaceHi = Color3.fromRGB(12, 12, 15),
+			text = Color3.fromRGB(255, 255, 255),
+			btnText = Color3.fromRGB(200, 205, 215),
+			muted = Color3.fromRGB(165, 170, 180),
+			shadow = Color3.fromRGB(0, 0, 0),
+			obsTop = Color3.fromRGB(10, 10, 12),
+			obsMid = Color3.fromRGB(6, 6, 8),
+			obsLow = Color3.fromRGB(0, 8, 22),
+			btnBg = Color3.fromRGB(20, 22, 28),
+			btnHover = Color3.fromRGB(30, 34, 44),
+			inputBg = Color3.fromRGB(9, 10, 14),
+			switchOff = Color3.fromRGB(26, 29, 36),
+			good = Color3.fromRGB(0, 120, 255)
 		}
 		local v3697 = t166
 
